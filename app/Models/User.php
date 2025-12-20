@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'jabatan',
         'email',
         'password',
     ];
@@ -44,5 +46,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function leads()
+    {
+        return $this->hasMany(leadsModel::class, 'id_user');
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(pelangganModel::class, 'id_user');
     }
 }
