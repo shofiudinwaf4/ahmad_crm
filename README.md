@@ -1,59 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📊 CRM Project Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi **CRM (Customer Relationship Management)** berbasis **Laravel** untuk mengelola Leads, Produk, Project, Reporting, serta Export laporan ke **Excel**, dengan sistem role **Sales** dan **Manager**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Teknologi yang Digunakan
+- PHP >= 8.2
+- Laravel >= 11
+- MySQL
+- Bootstrap 5
+- Maatwebsite Excel
+- JavaScript (Vanilla)
+- Carbon
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fitur Utama
+- Login & Logout
+- Role Management (Sales & Manager)
+- Manajemen Leads
+- Manajemen Produk (khusus Manager)
+- Project (mendukung lebih dari satu produk per lead)
+- Approval harga otomatis
+- Reporting Leads & Project
+- Filter laporan:
+  - Sales
+  - Tanggal (single / range)
+  - Status
+- Export laporan ke **Excel (.xlsx)**
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🖥️ Cara Menjalankan Aplikasi (Local)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/username/crm-project.git
+cd crm-project
+```
 
-## Laravel Sponsors
+### 2️⃣ Install Dependency
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3️⃣ Copy File Environment
+```bash
+cp .env.example .env
+```
 
-### Premium Partners
+Konfigurasi database di file `.env`:
+```env
+APP_NAME="CRM Project"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crm_project
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Contributing
+### 4️⃣ Generate Application Key
+```bash
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5️⃣ Migrasi Database
+```bash
+php artisan migrate
+```
 
-## Code of Conduct
+Jika tersedia seeder:
+```bash
+php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6️⃣ Jalankan Server
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+Akses aplikasi melalui browser:
+```
+http://127.0.0.1:8000
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 👤 Akun Default (Jika Seeder Digunakan)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Manager
+```
+Username : manager1
+Password : password
+Role     : Manager
+```
+
+### Sales
+```
+Username : sales1
+Password : password
+Role     : Sales
+```
+
+---
+
+## 📘 Tata Cara Penggunaan Aplikasi
+
+### 1 Login
+- Masuk menggunakan username & password sesuai role
+- Sistem akan otomatis mengarahkan ke dashboard
+
+### 2️ Manajemen Leads (Sales)
+- Sales dapat menambah dan mengelola lead miliknya
+- Manager dapat melihat seluruh lead
+- Status lead dapat diubah hingga **Deal**
+- Lead akan bepindah ke halaman project bila status **Deal**
+
+### 3️ Manajemen Produk (Manager)
+- Tambah, ubah, dan hapus produk
+- Produk digunakan pada saat pembuatan Project
+
+### 4️ Project (Sales)
+- Satu lead dapat memilih **lebih dari satu produk**
+- Sistem otomatis menentukan status approval:
+  - **Approved** → jika harga jual ≤ permintaan harga
+  - **Waiting Approval** → jika harga jual > permintaan harga
+- Tombol Edit akan muncul bila ada status **Reject**
+- Tombol Proses Lead akan muncul bila semua status **Approved**
+
+### 5️ Approval Project (Manager)
+- Status Approval harga bisa diubah 
+
+### 6 Customer
+- Bisa lihat detail customers
+- Satu customer dapat memilih **lebih dari satu layanan**
+- Merubah status aktif layanan **Aktif** / **Tidak Aktif** (Manager)
+- Sistem otomatis menentukan status Aktif Customer:
+  - **Aktif** → jika status layanan ada yang aktif
+  - **Tidak Aktif** → jika tatus layanan ada yang tidak aktif
+
+### 6 Report
+- Filter laporan berdasarkan:
+  - Sales
+  - Tanggal (single / range)
+  - Status
+- Filter dapat digunakan satu atau digabungkan
+
+### 7 Export Excel
+- Klik tombol **Export Excel**
+- File akan terdownload otomatis
+- Nama file mengikuti filter yang dipilih
+
+Contoh:
+```
+report_project.xlsx
+report_project_sales_budi.xlsx
+report_project_19-12-2025_sampai_20-12-2025.xlsx
+```
+
+---
+
+## 🔐 Hak Akses Role
+
+| Role | Hak Akses |
+|----|----|
+| Sales | Mengelola lead sendiri, project, customer, dan laporan terbatas |
+| Manager | Akses penuh ke customer, produk, approval project, dan reporting |
+
+---
+
+## 📁 Struktur Folder Penting
+```
+app/
+ ├── Exports/
+ ├── Http/
+ │   ├── Controllers/
+ │   ├── Middleware/
+ ├── Models/
+resources/
+ ├── views/
+public/
+ ├── css/
+ ├── js/
+```
+
+---
+
+
+## 🧑‍💻 Author
+**Nama:** Ahmad Shofiudin Firdani Wafa 
+**Role:** Fullstack Web Developer  
+**Tech Stack:** Laravel, MySQL, Bootstrap  
+
+---
+
+## 📄 License
+Project ini dibuat untuk kebutuhan **technical test dan pembelajaran**.
