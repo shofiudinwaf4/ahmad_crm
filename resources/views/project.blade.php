@@ -109,16 +109,8 @@
                                         @endif
                                         @if (!$waitingApproval && !$reject)
                                             <a class="btn btn-sm btn-success" href='/bayar/{{ $leads->id }}'>
-                                                Bayar </a>
+                                                Proses Project </a>
                                         @endif
-                                        {{-- <form action="/deleteProduk/{{ $leads->id }}" method="POST"
-                                        onsubmit="return confirm('Apakah yakin akan melakukan penghapusan data?')"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" name="submit" class="btn btn-sm btn-danger">
-                                            Hapus </button>
-                                    </form> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -136,6 +128,7 @@
                             <th>Harga Jual</th>
                             <th>Harga Pengajuan</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,16 +143,20 @@
                                 <td>{{ $projects->sales->name }}</td>
                                 <td class="text-end">@uang($projects->harga_jual, 0, ',', '.') </td>
                                 <td class="text-end">@uang($projects->permintaan_harga, 0, ',', '.') </td>
-                                <td><button
-                                        class="btn @if ($projects->status == 'approved') btn-success
+                                <td><span
+                                        class="badge @if ($projects->status == 'approved') text-bg-success
                                             @elseif ($projects->status == 'rejected')
-                                            btn-danger
+                                            text-bg-danger
                                         @else
-                                            btn-secondary @endif btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#editApproval" data-id="{{ $projects->id }}"
+                                            text-bg-secondary @endif btn-sm">
+                                        {{ $projects->status }}
+                                    </span>
+                                </td>
+                                <td><button class="btn  btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#editApproval" data-id="{{ $projects->id }}"
                                         data-namaLead="{{ $projects->lead->nama . '-' . $projects->produk->nama_produk }}"
                                         data-status="{{ $projects->status }}">
-                                        {{ $projects->status }}
+                                        Ubah Status
                                     </button>
                                 </td>
                             </tr>

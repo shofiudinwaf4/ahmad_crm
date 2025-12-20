@@ -54,6 +54,7 @@
                             <th>No Langganan</th>
                             <th>Nama Layanan</th>
                             <th>Tagihan</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,14 +67,18 @@
                                 <td>{{ $layanan->no_langganan }}</td>
                                 <td>{{ $layanan->nama_layanan }}</td>
                                 <td class="text-end">@uang($layanan->tagihan, 0, ',', '.') </td>
+                                <td class="text-center"><span
+                                        class="badge 
+                            text-bg-{{ $layanan->is_active == 'aktif' ? 'success' : 'danger' }} btn-sm">
+                                        {{ $layanan->is_active }}
+                                    </span>
+                                </td>
                                 @if (session('role') == 'Manager')
-                                    <td><button
-                                            class="btn 
-                                btn-{{ $layanan->is_active == 'aktif' ? 'success' : 'danger' }} btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#editActiveModal"
-                                            data-id="{{ $layanan->id }}" data-namaLayanan="{{ $layanan->nama_layanan }}"
+                                    <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#editActiveModal" data-id="{{ $layanan->id }}"
+                                            data-namaLayanan="{{ $layanan->nama_layanan }}"
                                             data-is_active="{{ $layanan->is_active }}">
-                                            {{ $layanan->is_active }}
+                                            Ubah Status
                                         </button>
                                     </td>
                                 @endif

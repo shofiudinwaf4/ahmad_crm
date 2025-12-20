@@ -50,17 +50,20 @@
                             <td>{{ $leads->kontak }}</td>
                             <td>{{ $leads->alamat }}</td>
                             <td>{{ $leads->kebutuhan }}</td>
-                            <td><button
-                                    class="btn 
-                                @if ($leads->status == 'baru') btn-warning
-                                @elseif ($leads->status == 'proses') btn-secondary
-                                @elseif ($leads->status == 'deal') btn-success
-                                @elseif ($leads->status == 'gagal') btn-danger @endif btn-sm"
-                                    data-bs-toggle="modal" data-bs-target="#editStatusModal" data-id="{{ $leads->id }}"
-                                    data-nama="{{ $leads->nama }}" data-status="{{ $leads->status }}">
+                            <td><span
+                                    class="badge 
+                                @if ($leads->status == 'baru') text-bg-warning
+                                @elseif ($leads->status == 'proses') text-bg-secondary
+                                @elseif ($leads->status == 'deal') text-bg-success
+                                @elseif ($leads->status == 'gagal') text-bg-danger @endif btn-sm">
                                     {{ $leads->status }}
-                                </button></td>
-                            <td> <a class="btn btn-sm btn-warning btn-edit-project btn-sm"
+                                </span></td>
+                            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#editStatusModal" data-id="{{ $leads->id }}"
+                                    data-nama="{{ $leads->nama }}" data-status="{{ $leads->status }}">
+                                    Ubah Status
+                                </button>
+                                <a class="btn btn-sm btn-warning btn-edit-project btn-sm"
                                     href='/editLeads/{{ $leads->id }}'>
                                     Edit </a>
                                 <form action="/deleteLeads/{{ $leads->id }}" method="POST"

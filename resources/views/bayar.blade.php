@@ -103,7 +103,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-success">Bayar</button>
+                <button type="submit" class="btn btn-success">Change Customer</button>
             </div>
         </form>
         </main>

@@ -19,7 +19,7 @@ class CustomerController extends Controller
         $getCustomer = pelangganModel::all();
 
         $data = [
-            'aktif' => 'Customer',
+            'aktif' => 'Customers',
             'title' => 'Customer',
             'profile' => $getProfile,
             'customer' => $getCustomer,
