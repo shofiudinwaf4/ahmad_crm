@@ -37,4 +37,4 @@ RUN composer install \
 # EXPOSE 8080 (Opsional, boleh dihapus atau biarkan)
 
 # Gunakan shell form agar $PORT bisa terbaca oleh sistem
-CMD sh -c "php -S 0.0.0.0:${PORT:-8080} -t public"
+CMD php -S 0.0.0.0:$PORT -t public
