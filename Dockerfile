@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 # Apache rewrite
 RUN a2enmod rewrite
 
-# Set document root ke public
+# Document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/sites-available/*.conf \
@@ -19,10 +19,15 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
+
+# 🔥 COPY SOURCE DULU
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader \
- && php artisan key:generate --force \
+# 🔥 BARU composer install
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+# Laravel prep (aman walau gagal)
+RUN php artisan key:generate --force || true \
  && php artisan storage:link || true
 
 EXPOSE 80
